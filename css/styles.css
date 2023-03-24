@@ -4,6 +4,7 @@
   --main-color: #2e2f42;
   --secondary-color: #434455;
   --accent-color: #404bbf;
+  --anim-dur-func: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1,
@@ -90,8 +91,9 @@ body {
 
 .page-header {
   border-bottom: 1px solid #e7e9fc;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  /* padding-top: 24px;
+  padding-bottom: 24px; */
+
   box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
@@ -112,6 +114,11 @@ body {
   position: relative;
 }
 
+.menu-item {
+  /* padding-top: 24px;
+  padding-bottom: 24px; */
+}
+
 .menu-item:not(:last-child) {
   margin-right: 40px;
 }
@@ -124,7 +131,7 @@ body {
 .menu-link.current::after {
   position: absolute;
   left: 0;
-  top: 43px;
+  bottom: -1px;
 
   content: "";
   width: 100%;
@@ -136,11 +143,16 @@ body {
 }
 
 .menu-link {
+  display: inline-block;
+  padding-top: 24px;
+  padding-bottom: 24px;
+
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--main-color);
+  transition: color var(--anim-dur-func);
 }
 
 .menu-link:hover,
@@ -168,6 +180,8 @@ body {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--secondary-color);
+
+  transition: color var(--anim-dur-func);
 }
 
 .contacts-list-item-link:hover,
@@ -228,6 +242,8 @@ body {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   border-color: transparent;
+
+  transition: background-color var(--anim-dur-func);
 }
 
 .modal-btn:hover,
@@ -370,6 +386,8 @@ body {
   height: 40px;
   border-radius: 50%;
   background-color: #4d5ae5;
+
+  transition: background-color var(--anim-dur-func);
 }
 
 .team-icon-link:hover,
@@ -401,6 +419,8 @@ body {
   align-items: center;
   border: 1px solid #8e8f99;
   border-radius: 4px;
+
+  transition: border-color var(--anim-dur-func);
 }
 
 .customers-link:hover,
@@ -417,6 +437,8 @@ body {
   width: 104px;
   height: 56px;
   fill: #8e8f99;
+
+  transition: fill var(--anim-dur-func);
 }
 
 /* ============================== /MAIN ============================== */
@@ -469,7 +491,9 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #4d5ae5;
+
+  transition: background-color var(--anim-dur-func);
 }
 
 .footer-soc-link:hover,
@@ -483,6 +507,84 @@ body {
   fill: #f4f4fd;
 }
 /* ============================== /FOOTER ============================== */
+
+/* ============================== MODAL ============================== */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity var(--anim-dur-func), visibility var(--anim-dur-func);
+
+  background-color: rgba(46, 47, 66, 0.4);
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, 100%) scale(0);
+  box-shadow: none;
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform var(--anim-dur-func), box-shadow var(--anim-dur-func);
+
+  display: flex;
+  width: 408px;
+  min-height: 576px;
+  padding: 24px;
+
+  background-color: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.close-button {
+  transition: background-color var(--anim-dur-func), border var(--anim-dur-func);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: auto;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background-color: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.close-button:hover,
+.close-button:focus {
+  background-color: var(--accent-color);
+  border: none;
+}
+
+.close-button-icon {
+  transition: fill var(--anim-dur-func);
+
+  width: 8px;
+  height: 8px;
+
+  fill: var(--main-color);
+}
+
+.close-button:hover .close-button-icon,
+.close-button:focus .close-button-icon {
+  fill: #ffffff;
+}
+/* ============================== /MODAL ============================== */
 
 /* ______________________________ PORTFOLIO ____________________________ */
 
@@ -523,6 +625,9 @@ body {
   color: #4d5ae5;
   background-color: #f4f4fd;
   cursor: pointer;
+
+  transition: color var(--anim-dur-func), border-color var(--anim-dur-func),
+    background-color var(--anim-dur-func), box-shadow var(--anim-dur-func);
 }
 
 .portfolio-menu-btn:hover,
@@ -543,6 +648,33 @@ body {
 
 .portfolio-list-item {
   flex-basis: calc(100% - 2 * 24px) / 3;
+
+  transition: box-shadow var(--anim-dur-func);
+}
+
+.portfolio-item-thumb {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-item-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  transform: translateY(100%);
+  transition: transform var(--anim-dur-func);
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+
+  padding: 40px 32px 40px 32px;
+  background-color: #4d5ae5;
 }
 
 .portfolio-list-item-info {
@@ -558,6 +690,11 @@ body {
 .portfolio-list-item:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.portfolio-list-item:hover .portfolio-item-overlay,
+.portfolio-list-item:focus .portfolio-item-overlay {
+  transform: translateY(0);
 }
 
 .portfolio-list-item-title {
