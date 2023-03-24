@@ -539,7 +539,7 @@ body {
   transform: translate(-50%, -50%) scale(1);
   transition: transform var(--anim-dur-func), box-shadow var(--anim-dur-func);
 
-  display: flex;
+  /* display: flex; */
   width: 408px;
   min-height: 576px;
   padding: 24px;
